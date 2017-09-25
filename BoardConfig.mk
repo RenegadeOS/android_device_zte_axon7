@@ -38,6 +38,12 @@
   ENABLE_CPUSETS := true
   TARGET_USES_64_BIT_BINDER := true
 
+ifneq ($(HOST_OS),darwin)
+    SDCLANG := true
+    SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
+    SDCLANG_LTO_DEFS := device/qcom/common/sdllvm-lto-defs.mk
+endif
+
 # Assertions
   TARGET_OTA_ASSERT_DEVICE := ailsa_ii,axon7
 
@@ -78,6 +84,10 @@ WCNSS_FILTER_USES_SIBS := true
 
 # Boot animation
   TARGET_BOOTANIMATION_HALF_RES := true
+
+# CM Hardware
+BOARD_HARDWARE_CLASS += $(PLATFORM_PATH)/cmhw
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchscreen/wake_gesture"
 
 # BootLoader
   TARGET_BOOTLOADER_BOARD_NAME := ailsa_ii
