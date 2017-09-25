@@ -163,15 +163,11 @@ on post-fs-data
     chmod 0644 /persist/sensors/sensors_settings
     chown system root /persist/sensors/sensors_settings
 
-    # Create PERFD deamon related dirs
-    setprop ro.min_freq_0 384000
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
+    #Create PERFD deamon related dirs
     mkdir /data/system/perfd 0770 root system
-    rm /data/system/perfd/default_values
     chmod 2770 /data/system/perfd
-      
-
+    rm /data/system/perfd/default_values
+    start perfd
 
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
@@ -308,6 +304,8 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wdsp0/boot
     #CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "lionfish"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "lionfish"
 
 # corefile limit
 on property:persist.debug.trace=1
