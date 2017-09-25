@@ -212,7 +212,7 @@
     phone object irrespective of this config -->
     <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
 
-    <!-- Hardware keys present on the device, stored as a bit field.
+   <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
              1 - Home
@@ -226,6 +226,23 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">83</integer>
 
+    <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. 
+    <integer name="config_deviceHardwareWakeKeys">64</integer>-->
+
+ <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+ 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">2</integer>
     <!--  Whether Multiuser UI should be shown -->
@@ -300,6 +317,20 @@
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
     </string-array>
     
+    <!-- Flag indicating emergency calls will always use IMS irrespective of the state of
+    the IMS connection -->
+
+    <!-- Flag specifying whether VoLTE & VT is available on device -->
+    <bool name="config_device_volte_available">true</bool>
+
+    <!-- Flag specifying whether VoLTE should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_volte_available">true</bool>
+
+    <!-- Flag specifying whether VoLTE TTY is supported -->
+    <bool name="config_carrier_volte_tty_supported">false</bool>
+
     <!-- Flag specifying whether WFC over IMS is available on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
 
@@ -308,6 +339,10 @@
          provisioning, availability etc -->
     <bool name="config_carrier_wfc_ims_available">true</bool>
 
-    <!-- Whether notify fingerprint client of successful cancelled authentication -->
+ <!-- Night Display -->
+    <bool name="config_nightDisplayAvailable">true</bool>
+ 
+ <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
+
 </resources>
